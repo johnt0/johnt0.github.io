@@ -1,0 +1,34 @@
+/* src/components/layout/Navbar/Navbar.module.css */
+
+/* ... (existing .navbar, .navLinks, etc. styles) ... */
+
+.navLink {
+  color: #d1d5db; /* text-gray-300 */
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 500;
+  text-decoration: none; /* Crucial: Remove default underline */
+  transition: color 0.2s ease-in-out;
+  padding-bottom: 1rem; /* Add padding to give space for the pseudo-underline */
+  position: relative; /* Make the link the positioning context for its pseudo-element */
+  display: inline-block; /* Ensure padding and relative positioning work correctly */
+}
+
+.navLink:hover {
+  color: #fff; /* hover:text-white */
+}
+
+/* The Pseudo-underline Effect */
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0; /* Aligns to the bottom of the .navLink's padded area */
+  width: 0;
+  height: 2px;
+  background-color: #2c9df7; /* Your custom blue color */
+  transition: width 0.3s ease-out;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
