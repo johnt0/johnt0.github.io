@@ -1,24 +1,44 @@
 // src/app/layout.js
 import './globals.css'; // This imports your Tailwind CSS
 
-// You can import Google Fonts here if you want to use them.
-// For example, if you want to use 'Inter' font:
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
-
 export const metadata = {
   title: 'My Portfolio',
   description: 'A portfolio website showcasing my work.',
 };
 
+
+import localFont from 'next/font/local';
+
+const satoshi = localFont({
+  src: [
+    {
+      path: '../../public/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Light.woff2',
+      weight: '300',
+      style: 'light',
+    },
+    {
+      path: '../../public/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Regular.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/satoshi/Fonts/WEB/fonts/Satoshi-Bold.woff2',
+      weight: '700',
+      style: 'bold',
+    },
+  ],
+});
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={satoshi.className}>
       {/* Apply the font to the body or html tag */}
-      <body className={inter.className}>
+      <body className={satoshi.className}>
         {children}
       </body>
+      <footer>
+        All rights reserved
+      </footer>
     </html>
   );
 }

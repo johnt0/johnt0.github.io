@@ -19,7 +19,7 @@ const Navbar = () => {
             alt="Profile"
             className="w-10 h-10 rounded-full object-cover mr-2 border-2 border-portfolioBlue"
           />
-          <span className="font-semibold text-xl text-white">Software Developer</span>
+          <span className="font-semibold text-xl text-off-white">Software Developer</span>
         </div>
       </div>
 
@@ -40,7 +40,7 @@ const Navbar = () => {
 
       {/* Right section */}
       <div>
-        <button className="bg-portfolioBlue hover:bg-portfolioBlue-dark text-white font-bold py-2 px-6 rounded-md transition-colors duration-200 text-lg">
+        <button className="bg-portfolioBlue hover:bg-portfolioBlue-dark text-off-white font-bold py-2 px-6 rounded-md transition-colors duration-200 text-lg">
           button
         </button>
       </div>

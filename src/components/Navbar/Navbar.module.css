@@ -1,9 +1,7 @@
 /* src/components/layout/Navbar/Navbar.module.css */
 
-/* ... (existing .navbar, .navLinks, etc. styles) ... */
 
-.navLink {
-  color: #d1d5db; /* text-gray-300 */
+.navLink { 
   font-size: 1.125rem; /* text-lg */
   font-weight: 500;
   text-decoration: none; /* Crucial: Remove default underline */
