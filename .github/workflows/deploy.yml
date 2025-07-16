@@ -22,14 +22,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js with Dependency Cache
         uses: actions/setup-node@v4
         with:
-          node-version: "20" # Use a stable Node.js version
-          cache: "npm" # Or 'yarn', 'pnpm' if you use them
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm ci # Or 'yarn install --frozen-lockfile', 'pnpm install --no-frozen-lockfile'
+        run: npm ci
+
+      - name: Cache Next.js Build Output
+        # This step caches the .next/cache directory for faster subsequent Next.js builds.
+        uses: actions/cache@v4
+        id: nextjs-build-cache # A unique ID for this cache step
+        with:
+          path: |
+            ${{ github.workspace }}/.next/cache # Only cache the Next.js specific build cache
+          key: ${{ runner.os }}-nextjs-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-build-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-build-
 
       - name: Build with Next.js
         run: npm run build # This will run 'next build' and generate the 'out' folder
