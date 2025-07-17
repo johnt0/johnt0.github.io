@@ -28,9 +28,6 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
-
       - name: Cache Next.js Build Output
         # This step caches the .next/cache directory for faster subsequent Next.js builds.
         uses: actions/cache@v4
@@ -38,10 +35,15 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/.next/cache # Only cache the Next.js specific build cache
-          key: ${{ runner.os }}-nextjs-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          key: ${{ runner.os }}-nextjs-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-nextjs-build-
+            ${{runner.os}}-
+      
+      - name: Install dependencies
+        if: steps.nextjs-build-cache.cache-hit != 'true'
+        run: npm ci
 
       - name: Build with Next.js
         run: npm run build # This will run 'next build' and generate the 'out' folder
