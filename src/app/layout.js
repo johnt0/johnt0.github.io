@@ -36,9 +36,6 @@ export default function RootLayout({ children }) {
       <body className={satoshi.className}>
         {children}
       </body>
-      <footer>
-        All rights reserved
-      </footer>
     </html>
   );
 }

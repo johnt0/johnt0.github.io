@@ -1,6 +1,5 @@
 /* src/components/layout/Navbar/Navbar.module.css */
 
-
 .navLink { 
   font-size: 1.125rem; /* text-lg */
   font-weight: 500;
@@ -15,15 +14,14 @@
   color: #fff; /* hover:text-white */
 }
 
-/* The Pseudo-underline Effect */
 .navLink::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0; /* Aligns to the bottom of the .navLink's padded area */
+  bottom: 0; 
   width: 0;
   height: 2px;
-  background-color: #2c9df7; /* Your custom blue color */
+  background-color: #309df5;
   transition: width 0.3s ease-out;
 }
 

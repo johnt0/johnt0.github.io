@@ -10,6 +10,8 @@
   --color-foreground: var(--foreground);
   --color-background-black: #10100e;
   --color-off-white: #ffffe3; 
+  --color-portfolioBlue: #309df5;
+  --color-portfolioBlueHover: #1f6cb0;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

@@ -1,6 +1,7 @@
 // src/components/layout/Navbar/Navbar.js
+
 import Link from 'next/link';
-import styles from './Navbar.module.css'; // Assuming you're still using CSS Modules for specific underline
+import styles from './Navbar.module.css'; 
 
 const Navbar = () => {
   const navLinks = [
@@ -17,30 +18,32 @@ const Navbar = () => {
           <img
             src="/images/profile.jpg"
             alt="Profile"
-            className="w-10 h-10 rounded-full object-cover mr-2 border-2 border-portfolioBlue"
+            className="w-10 h-10 rounded-full object-cover mr-2 border-2"
           />
           <span className="font-semibold text-xl text-off-white">Software Developer</span>
         </div>
       </div>
 
       {/* Middle section: Navigation Links */}
-      <ul className="flex space-x-8">
-        {navLinks.map((link) => (
-          <li key={link.name}>
-            <Link
-              href={link.href}
-              className={styles.navLink}
-            >
-
-              {link.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {/* ADDED flex-grow and justify-center to this div */}
+      <div className="flex-grow flex justify-center -ml-30">
+        <ul className="flex space-x-12">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <Link
+                href={link.href}
+                className={styles.navLink}
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {/* Right section */}
       <div>
-        <button className="bg-portfolioBlue hover:bg-portfolioBlue-dark text-off-white font-bold py-2 px-6 rounded-md transition-colors duration-200 text-lg">
+        <button className="bg-portfolioBlue hover:bg-portfolioBlueHover text-off-white font-bold py-2 px-6 rounded-md transition-colors duration-200 text-lg">
           button
         </button>
       </div>
