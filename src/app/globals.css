@@ -16,12 +16,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-} */
+}
 
 body {
   background: var(--color-background-black);
@@ -36,7 +36,7 @@ body {
   z-index: 99; 
   background: radial-gradient(
     circle at top left,
-    rgba(225, 225, 235, 0.1) 0%,
-    transparent 40vmax, 
+    rgba(225, 225, 235, 0.05) 10%, 
+    transparent 50vmax 
   );
 }

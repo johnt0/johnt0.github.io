@@ -27,7 +27,7 @@ const Navbar = () => {
 
       {/* Middle section: Navigation Links */}
       {/* ADDED flex-grow and justify-center to this div */}
-      <div className="flex-grow flex justify-center -ml-50">
+      <div className="flex-grow flex justify-center -ml-40">
         <ul className="flex space-x-12">
           {navLinks.map((link) => (
             <li key={link.name}>
