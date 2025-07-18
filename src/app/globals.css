@@ -8,7 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-background-black: #10100e;
+  --color-background-black: #0f172a;
   --color-off-white: #ffffe3; 
   --color-portfolioBlue: #309df5;
   --color-portfolioBlueHover: #1f6cb0;
@@ -16,15 +16,27 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background-black);
+  color: var(--color-off-white);
   font-family: var(--font-satoshi), sans-serif;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0; 
+  pointer-events: none;
+  z-index: 99; 
+  background: radial-gradient(
+    circle at top left,
+    rgba(225, 225, 235, 0.1) 0%,
+    transparent 40vmax, 
+  );
 }

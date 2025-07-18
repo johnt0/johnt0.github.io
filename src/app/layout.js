@@ -29,13 +29,12 @@ const satoshi = localFont({
   ],
 });
 
-
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={satoshi.className}>
       {/* Apply the font to the body or html tag */}
       <body className={satoshi.className}>
+        <div className="overlay" />
         {children}
       </body>
     </html>

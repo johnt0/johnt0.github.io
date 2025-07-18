@@ -21,7 +21,7 @@ const Navbar = () => {
             alt="Profile"
             className="w-10 h-10 rounded-full object-cover mr-2 border-2"
           />
-          <span className="font-semibold text-xl text-off-white">Software Developer</span>
+          <span className="font-semibold text-xl">Software Developer</span>
         </div>
       </div>
 

@@ -3,7 +3,7 @@ import Link from 'next/link'; // Import Link for client-side navigation
 
 const HeroSection = () => {
   return (
-    <section className="h-screen bg-primary-dark text-off-white flex items-center justify-center relative overflow-hidden">
+    <section className="h-screen flex items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10">
       </div>
 
@@ -19,7 +19,7 @@ const HeroSection = () => {
         {/* Call to Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
           {/* Primary CTA: View Projects */}
-          <Link href="/projects" className="bg-portfolioBlue hover:portfolioBlueHover text-off-white font-bold py-3 px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+          <Link href="/projects" className="bg-portfolioBlue hover:portfolioBlueHover font-bold py-3 px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
             View My Work
           </Link>
         
