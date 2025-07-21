@@ -1,32 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #10100e;
-  --foreground: #171717;
+  --background-dark: #10100e; /* This could be your default dark background */
+  --background-light: hsl(0, 0%, 96%); /* Example light background */
+  --color-off-white: #ffffe3;
+  --font-satoshi: 'Satoshi', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-background-black: #0f172a;
-  --color-off-white: #ffffe3; 
-  --color-portfolioBlue: #309df5;
-  --color-portfolioBlueHover: #1f6cb0;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-blue-theme: oklch(37.9% 0.146 265.522);
+  --color-blue-theme-button-hover: oklch(37.9% 0.146 267);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background-dark: #0a0a0a; 
   }
 }
 
 body {
-  background: var(--color-background-black);
+  background: var(--background-dark);
   color: var(--color-off-white);
   font-family: var(--font-satoshi), sans-serif;
+  margin: 0; 
+  padding: 0;
 }
 
 .overlay {
@@ -36,7 +33,7 @@ body {
   z-index: 99; 
   background: radial-gradient(
     circle at top left,
-    rgba(225, 225, 235, 0.05) 10%, 
+    rgba(225, 225, 235, 0.1) 25%, 
     transparent 50vmax 
   );
 }

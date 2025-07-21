@@ -1,7 +1,7 @@
 // src/components/layout/Navbar/Navbar.js
 
 import Link from 'next/link';
-import styles from './Navbar.module.css'; 
+import styles from './Navbar.module.css'; // Keep this if you have other custom CSS, but not strictly needed for this fix.
 import Image from 'next/image';
 
 const Navbar = () => {
@@ -12,7 +12,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="relative flex items-center justify-between p-4 bg-transparent rounded-lg m-4 shadow-lg backdrop-blur-md z-20 ml-20">
+    <nav className="fixed top-0 w-full flex items-center justify-between p-4 bg-transparent rounded-lg m-4 shadow-lg backdrop-blur-md z-20 ml-20">
       {/* Left section */}
       <div className="flex items-center space-x-4">
         <div className="flex items-center">
@@ -26,7 +26,6 @@ const Navbar = () => {
       </div>
 
       {/* Middle section: Navigation Links */}
-      {/* ADDED flex-grow and justify-center to this div */}
       <div className="flex-grow flex justify-center -ml-40">
         <ul className="flex space-x-12">
           {navLinks.map((link) => (
@@ -44,7 +43,7 @@ const Navbar = () => {
 
       {/* Right section */}
       <div>
-        <button className="bg-portfolioBlue hover:bg-portfolioBlueHover text-off-white font-bold py-2 px-6 rounded-md transition-colors duration-200 text-lg mr-20">
+        <button className="bg-button-blue hover:bg-button-blue-hover text-off-white font-bold py-2 px-6 rounded-md transition-colors duration-200 text-lg mr-20">
           button
         </button>
       </div>
