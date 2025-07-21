@@ -1,13 +1,14 @@
 // src/app/layout.js
-import './globals.css'; // This imports your Tailwind CSS
 
-export const metadata = {
-  title: 'My Portfolio',
-  description: 'A portfolio website showcasing my work.',
-};
-
-
+import './globals.css';
 import localFont from 'next/font/local';
+import Navbar from '@/components/layout/Navbar/Navbar';
+import LenisProvider from '@/components/layout/Scroll/LenisProvider';
+
+const metadata = {
+  title: 'Johning To - Software Developer Portfolio',
+  description: 'Personal portfolio of Johning To, a software developer showcasing projects and skills.',
+}
 
 const satoshi = localFont({
   src: [
@@ -32,10 +33,12 @@ const satoshi = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={satoshi.className}>
-      {/* Apply the font to the body or html tag */}
       <body className={satoshi.className}>
-        <div className="overlay" />
-        {children}
+        <LenisProvider>
+          <Navbar />  
+          <div className="overlay" />
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );

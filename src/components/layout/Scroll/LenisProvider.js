@@ -1,35 +1,39 @@
-// src/components/LenisProvider.js
+// components/layout/Scroll/LenisProvider.js
 'use client';
 
-import { useEffect } from 'react';
-import Lenis from '@studio-freight/lenis';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import Lenis from 'lenis';
+
+const LenisContext = createContext(null);
+
+export const useLenis = () => useContext(LenisContext);
 
 const LenisProvider = ({ children }) => {
+  const [lenisInstance, setLenisInstance] = useState(null);
+  const animationFrame = useRef();
+
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2, // How long the scroll animation lasts (in seconds)
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing function (optional)
-      direction: 'vertical', // 'vertical' or 'horizontal'
-      gestureDirection: 'vertical', // 'vertical' or 'horizontal'
-      smooth: true, // Enable smooth scrolling
-      mouseMultiplier: 1, // Adjust scroll speed for mouse wheel
-      smoothTouch: false, // Disable smooth scroll for touch devices (often better for UX)
-      touchMultiplier: 2, // Adjust scroll speed for touch
-      infinite: false, // Set to true for infinite scrolling loops
+      smooth: true,
     });
 
-    function raf(time) {
-      lenis.raf(time); 
-      requestAnimationFrame(raf); 
-    }
+    setLenisInstance(lenis);
 
-    requestAnimationFrame(raf);
-    return () => {
-      lenis.destroy();
+    const raf = (time) => {
+      lenis.raf(time);
+      animationFrame.current = requestAnimationFrame(raf);
     };
-  }, []); 
 
-  return <>{children}</>;
+    animationFrame.current = requestAnimationFrame(raf);
+
+    return () => cancelAnimationFrame(animationFrame.current);
+  }, []);
+
+  return (
+    <LenisContext.Provider value={lenisInstance}>
+      {children}
+    </LenisContext.Provider>
+  );
 };
 
 export default LenisProvider;

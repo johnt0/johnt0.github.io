@@ -10,7 +10,7 @@ const projectsData = [
   { id: 3, title: 'Project Title Three', description: 'Description for the third project.', image: '/project3-thumbnail.jpg' },
 ];
 
-const ProjectsSection = () => {
+const ProjectsSection = ({id}) => {
   return (
     <motion.section
       id="projects"

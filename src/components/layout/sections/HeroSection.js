@@ -1,11 +1,11 @@
-// src/components/HeroSection/HeroSection.js (remains the same)
+// src/components/HeroSection/HeroSection.js
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import styles from './HeroSection.module.css';
 
-const HeroSection = () => {
+const HeroSection = ({id}) => {
   const targetRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
@@ -22,7 +22,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section ref={targetRef} className={styles.heroContainer}>
+    <section id={id} ref={targetRef} className={styles.heroContainer}>
       <motion.div 
         className={styles.heroContent}
         style={{ opacity, scale, position }}

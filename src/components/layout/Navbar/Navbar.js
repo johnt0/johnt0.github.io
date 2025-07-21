@@ -1,15 +1,33 @@
 // src/components/layout/Navbar/Navbar.js
+'use client';
 
-import Link from 'next/link';
-import styles from './Navbar.module.css'; // Keep this if you have other custom CSS, but not strictly needed for this fix.
-import Image from 'next/image';
+import styles from './Navbar.module.css';
+import { useLenis } from '@/components/layout/Scroll/LenisProvider';
+import { useEffect, useRef } from 'react';
 
 const Navbar = () => {
+  const lenis = useLenis();
+
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Home', href: '#' }, // 'Home' often scrolls to the top
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' },
   ];
+
+  const handleNavLinkClick = (e, href) => {
+    e.preventDefault();
+    if (lenis) {
+      const target = href === '#' ? 0 : href;
+
+      lenis.scrollTo(target, {
+        offset: 10, 
+        duration: 1.2, 
+        easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+      });
+    } else {
+      console.log("no instance of lenis");
+    }
+  };
 
   return (
     <nav className="fixed top-0 w-full flex items-center justify-between p-4 bg-transparent rounded-lg m-4 shadow-lg backdrop-blur-md z-20 ml-20">
@@ -30,12 +48,13 @@ const Navbar = () => {
         <ul className="flex space-x-12">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <Link
+              <a
                 href={link.href}
+                onClick={(e) => handleNavLinkClick(e, link.href)}
                 className={styles.navLink}
               >
                 {link.name}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

@@ -2,7 +2,6 @@
 
 import HeroSection from '@/components/layout/sections/HeroSection';
 import ProjectsSection from '@/components/layout/sections/ProjectsSection';
-import Navbar from '@/components/layout/Navbar/Navbar';
 import LenisProvider from '@/components/layout/Scroll/LenisProvider';
 
 // Metadata for the homepage
@@ -13,10 +12,9 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <LenisProvider>
-      <Navbar />
-      <HeroSection />
-      <ProjectsSection />
-    </LenisProvider>
+    <>
+    <HeroSection/>
+    <ProjectsSection/>
+    </>
   );
 }
