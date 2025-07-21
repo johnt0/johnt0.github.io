@@ -29,7 +29,7 @@ export default function ProjectCardTemplate() {
             A Catchy & Informative Tagline
           </p>
           <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
-            This is a brief description of the project, highlighting its key features and the problems it solves. It's concise but gives a good overview.
+            This is a brief description of the project, highlighting its key features and the problems it solves. It&apos;s concise but gives a good overview.
           </p>
           <div className="flex flex-wrap gap-2">
             <span className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-3 py-1 rounded-full">
