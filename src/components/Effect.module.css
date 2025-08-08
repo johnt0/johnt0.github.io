@@ -1,0 +1,35 @@
+/* /components/Effect.module.css */
+
+.cursor {
+  -webkit-transition: opacity .5s ease;
+  transition: opacity .5s ease;
+}
+
+.cursor::before {
+  -webkit-animation: blink 1s infinite;
+  animation: blink 1s infinite;
+  content: "_";
+}
+
+.cursorHidden {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

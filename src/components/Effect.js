@@ -1,66 +1,57 @@
-// components/Typewriter/TypewriterEffect.js
+// components/Effect.js
 import { useState, useEffect, useRef } from 'react';
-import styles from './TypewriterEffect.module.css';
+import styles from './Effect.module.css';
 
-const TypewriterEffect = ({ text, speed = 150, showCursor = true, charClassName = '' }) => {
+const Effect = ({
+  text,
+  speed = 150,
+  showCursor = true, // This prop now directly controls cursor visibility
+  charClassName = '',
+  onTypingComplete // Called when all characters are displayed
+}) => {
   const [displayedChars, setDisplayedChars] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTypingCompleted, setIsTypingCompleted] = useState(false);
-  const [hasInitialDelayPassed, setHasInitialDelayPassed] = useState(false); // NEW STATE for delay
+  const [internalTypingComplete, setInternalTypingComplete] = useState(false); // New: Tracks when *all chars* are typed
 
-  // Debugging refs (can remove after verifying behavior)
-  const isFirstMount = useRef(true);
-  
+  const onTypingCompleteRef = useRef(onTypingComplete);
   useEffect(() => {
-    if (!isFirstMount.current) {}
-    isFirstMount.current = false;
-    return () => {};
-  }, []);
+    onTypingCompleteRef.current = onTypingComplete;
+  }, [onTypingComplete]);
 
   useEffect(() => {
     setDisplayedChars([]);
     setCurrentIndex(0);
-    setIsTypingCompleted(false);
-    setHasInitialDelayPassed(false); 
-
-    if (!text) {
-      setIsTypingCompleted(true);
-      return; 
-    }
-
-    const initialDelayTimer = setTimeout(() => {
-      setHasInitialDelayPassed(true);
-    }, 750);
-
-    return () => {
-      clearTimeout(initialDelayTimer);
-    };
+    setInternalTypingComplete(false); // Reset this
   }, [text]);
 
+  // Main typing logic
   useEffect(() => {
-    if (!hasInitialDelayPassed) {
-      return;
-    }
-
     if (!text || text.length === 0) {
+      setInternalTypingComplete(true);
+      if (onTypingCompleteRef.current) {
+        onTypingCompleteRef.current();
+      }
       return;
     }
 
     if (currentIndex >= text.length) {
-      setIsTypingCompleted(true);
-      return; // Stop the typing process
+      setInternalTypingComplete(true); // All characters are now displayed
+      if (onTypingCompleteRef.current) {
+        onTypingCompleteRef.current(); // Notify parent
+      }
+      return; 
     }
+
+    const delay = speed * 0.65;
     const timer = setTimeout(() => {
       setDisplayedChars((prev) => [...prev, text[currentIndex]]);
       setCurrentIndex((prev) => prev + 1);
-    }, speed);
+    }, delay);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [currentIndex, text, speed, hasInitialDelayPassed]);
+    return () => clearTimeout(timer); // Clean up the timer
+  }, [currentIndex, text, speed]);
 
-  const shouldShowCursor = showCursor && (!isTypingCompleted || !hasInitialDelayPassed);
+  const cursorClass = showCursor ? styles.cursor : `${styles.cursor} ${styles.cursorHidden}`;
 
   return (
     <span>
@@ -69,12 +60,9 @@ const TypewriterEffect = ({ text, speed = 150, showCursor = true, charClassName 
           {char === ' ' ? '\u00A0' : char}
         </span>
       ))}
-      {/* Conditionally render the cursor */}
-      {shouldShowCursor && (
-        <span className={styles.cursor}>_</span>
-      )}
+      <span className={cursorClass}></span> {}
     </span>
   );
 };
 
-export default TypewriterEffect;
+export default Effect;
