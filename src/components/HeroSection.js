@@ -16,14 +16,14 @@ const pageContent = [
   {
     id: 'greeting',
     type: 'greeting',
-    text: "Hello!",
+    text: "",
     pauseAfterTyping: 1000
   },
   {
     id: 'info',
     type: 'info',
     staticLabel: "info.",
-    text: "Hi, my name is Johning To. I am a software developer.",
+    text: "Hi, my name is Johning To. I am a software developer. ",
     pauseAfterTyping: 0
   },
   {
