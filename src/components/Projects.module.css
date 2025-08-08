@@ -6,6 +6,21 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
+.scrambleOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #16191b; 
+  opacity: 1;
+  transition: opacity 0.2s ease-out;
+}
+
+.scrambleOverlay.hidden {
+  opacity: 0;
+  pointer-events: none; /* Prevents interaction after it's hidden */
+}
 
 .projectItem {
   position: relative;
@@ -17,6 +32,7 @@
   color: #e2e6e8;
   white-space: nowrap;
 }
+
 
 .index {
   opacity: 0.2;

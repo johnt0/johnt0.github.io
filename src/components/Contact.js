@@ -1,6 +1,4 @@
-
 // TODO
-
 const Contact = () => {
     return (
         <div>
